@@ -427,8 +427,3 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosy
 ---
 
 **Yasal Uyarı**: Bu araç yalnızca eğitim ve güvenlik testi amaçlıdır. Yasadışı kullanımdan doğacak sorumluluk kullanıcıya aittir.
-=======
-# Shidori-DDOS
-Best Ethical Ddos Tool
->>>>>>> 91c110e4e8a104b992d815c19b00a6be464803ad
-# S-Ddos
