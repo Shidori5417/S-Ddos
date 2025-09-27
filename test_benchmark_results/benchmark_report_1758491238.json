@@ -1,0 +1,67 @@
+{
+  "benchmark_config": {
+    "target_url": "http://httpbin.org/get",
+    "duration": 30,
+    "max_requests": 1000,
+    "concurrency_levels": [
+      10,
+      50
+    ],
+    "test_types": [
+      "http_flood",
+      "async_flood",
+      "mixed_load"
+    ],
+    "warmup_time": 10,
+    "cooldown_time": 5,
+    "output_dir": "test_benchmark_results",
+    "enable_async": true,
+    "enable_threading": true,
+    "memory_limit": 8589934592
+  },
+  "baseline_metrics": {
+    "cpu_usage": 27.8,
+    "memory_usage": 85.8,
+    "memory_available": 2422632448,
+    "network_sent": 13803714196,
+    "network_received": 27209654669,
+    "timestamp": 1758491155.903361
+  },
+  "test_results": {
+    "http_flood": {
+      "concurrency_10": {
+        "error": "No module named 'uvloop'"
+      },
+      "concurrency_50": {
+        "error": "No module named 'uvloop'"
+      }
+    },
+    "async_flood": {
+      "concurrency_10": {
+        "error": "HighPerformanceAsyncAttacker.__init__() missing 1 required positional argument: 'target'"
+      },
+      "concurrency_50": {
+        "error": "HighPerformanceAsyncAttacker.__init__() missing 1 required positional argument: 'target'"
+      }
+    },
+    "mixed_load": {
+      "concurrency_10": {
+        "error": "No module named 'uvloop'"
+      },
+      "concurrency_50": {
+        "error": "No module named 'uvloop'"
+      }
+    }
+  },
+  "summary": {
+    "best_performance": {},
+    "worst_performance": {},
+    "optimal_concurrency": {},
+    "resource_usage": {}
+  },
+  "recommendations": [
+    "High memory usage detected. Consider increasing available RAM or reducing memory-intensive applications."
+  ],
+  "timestamp": "2025-09-22T00:47:18.204776",
+  "total_duration": 0
+}

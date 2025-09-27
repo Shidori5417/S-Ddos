@@ -1,0 +1,85 @@
+
+/* Default Theme CSS */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
+.theme-default {
+    --bg-color: #ffffff;
+    --text-color: #212529;
+    --border-color: #dee2e6;
+}
+
+.theme-dark {
+    --bg-color: #212529;
+    --text-color: #ffffff;
+    --border-color: #495057;
+}
+
+.theme-hacker {
+    --bg-color: #000000;
+    --text-color: #00ff00;
+    --border-color: #008000;
+    --primary-color: #00ff00;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--bg-color);
+    border-color: var(--border-color);
+}
+
+.navbar-dark {
+    background-color: var(--primary-color) !important;
+}
+
+.theme-hacker .navbar-dark {
+    background-color: #001100 !important;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.theme-hacker .card {
+    background-color: #001100;
+    border: 1px solid var(--primary-color);
+}
+
+.theme-hacker .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000000;
+}
+
+.log-entry {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 0.5rem;
+}
+
+.theme-hacker .log-entry {
+    background-color: rgba(0, 255, 0, 0.05);
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 300px;
+    }
+}
