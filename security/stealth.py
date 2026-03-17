@@ -133,11 +133,6 @@ class ProcessStealth:
                         
         except Exception as e:
             logger.debug(f"Process name change failed: {e}")
-                
-                logger.debug(f"Process name changed to {self.config.fake_process_name}")
-                
-        except Exception as e:
-            logger.debug(f"Failed to change process name: {e}")
     
     def _set_process_priority(self):
         """Set process priority to avoid detection"""
