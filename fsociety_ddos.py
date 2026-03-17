@@ -16,6 +16,8 @@ import queue
 import asyncio
 import warnings
 import urllib3
+import uuid
+from datetime import datetime
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -2410,7 +2412,7 @@ def main():
                 
         elif args.attack_type == 'layer7':
             # Layer 7 saldırıları
-            attack_thread = AttackThreadCLI(
+            attack_thread = HighPerformanceAttackThreadCLI(
                 target=args.target,
                 num_requests=args.requests,
                 method=args.method,
