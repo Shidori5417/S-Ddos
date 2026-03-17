@@ -44,16 +44,12 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 import warnings
 
-# Suppress SSL warnings
-warnings.filterwarnings('ignore', message='Unverified HTTPS request')
-
 # Import required libraries with auto-installation
 try:
     import requests
     from requests.adapters import HTTPAdapter
     from urllib3.util.retry import Retry
     import urllib3
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     REQUESTS_AVAILABLE = True
 except ImportError:
     REQUESTS_AVAILABLE = False

@@ -7,6 +7,8 @@ import aiohttp
 import random
 import time
 import threading
+import warnings
+import urllib3
 from typing import List, Dict, Optional, Tuple, Set
 from dataclasses import dataclass
 from urllib.parse import urlparse
@@ -326,12 +328,14 @@ class ProxyTester:
             }
             
             start_time = time.time()
-            response = requests.get(
-                test_url,
-                proxies=proxies,
-                timeout=self.timeout,
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = requests.get(
+                    test_url,
+                    proxies=proxies,
+                    timeout=self.timeout,
+                    verify=False
+                )
             
             if response.status_code == 200:
                 proxy.response_time = time.time() - start_time
