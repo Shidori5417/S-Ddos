@@ -13,6 +13,7 @@ import queue
 import time
 import psutil
 import gc
+import warnings
 from typing import List, Dict, Any, Optional, Callable
 import uvloop  # High-performance event loop
 import httpx  # High-performance HTTP client
@@ -141,13 +142,17 @@ class HighPerformanceNetworkManager:
             pool=5.0
         )
         
-        client = httpx.Client(
-            limits=limits,
-            timeout=timeout,
-            verify=False,  # Disable SSL verification for speed
-            http2=True,  # Enable HTTP/2 for better performance
-            follow_redirects=False
-        )
+        with warnings.catch_warnings():
+            # httpx doesn't use urllib3, but it might emit similar warnings
+            # we suppress general warnings here when intentionally using verify=False
+            warnings.simplefilter('ignore')
+            client = httpx.Client(
+                limits=limits,
+                timeout=timeout,
+                verify=False,  # Disable SSL verification for speed
+                http2=True,  # Enable HTTP/2 for better performance
+                follow_redirects=False
+            )
         
         return client
 

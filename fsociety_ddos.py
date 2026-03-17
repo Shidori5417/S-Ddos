@@ -14,6 +14,8 @@ import urllib
 import concurrent.futures
 import queue
 import asyncio
+import warnings
+import urllib3
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -270,14 +272,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -327,14 +331,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -384,14 +390,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -441,14 +449,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -498,14 +508,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -555,14 +567,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -612,14 +626,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -669,14 +685,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -726,14 +744,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -835,14 +855,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -892,14 +914,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -949,14 +973,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -1006,14 +1032,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -1063,14 +1091,16 @@ class NetworkAttacks:
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target_ip, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target_ip,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:
@@ -1981,14 +2011,16 @@ class HighPerformanceAttackThreadCLI(threading.Thread):
                     'https': f'http://{proxy_addr}'
                 }
             
-            response = self.session.get(
-                self.target, 
-                headers=headers, 
-                params=params,
-                proxies=proxy,
-                timeout=CONFIG['timeout'],
-                verify=False
-            )
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                response = self.session.get(
+                    self.target,
+                    headers=headers,
+                    params=params,
+                    proxies=proxy,
+                    timeout=CONFIG['timeout'],
+                    verify=False
+                )
             
             self.requests_sent += 1
             if response.status_code == 200:

