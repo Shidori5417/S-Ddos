@@ -100,4 +100,4 @@ pywin32>=306; sys_platform == "win32"
 wmi>=1.5.1; sys_platform == "win32"
 
 # Linux-specific dependencies
-python-prctl>=1.8.1; sys_platform == "linux"
+# python-prctl>=1.8.1; sys_platform == "linux"
